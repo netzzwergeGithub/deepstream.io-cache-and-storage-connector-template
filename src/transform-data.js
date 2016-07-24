@@ -15,9 +15,19 @@
  */
 module.exports.transformValueForStorage = function ( value ) {
   value = JSON.parse( JSON.stringify( value ) )
+
   var data = value._d
   delete value._d
-  data.__ds = value
+
+  if( data instanceof Array ) {
+    data = {
+      __dsList: data,
+      __ds: value
+    }
+  } else {
+    data.__ds = value
+  }
+
   return data
 }
 
@@ -35,8 +45,16 @@ module.exports.transformValueForStorage = function ( value ) {
  * @returns {Object} data
  */
 module.exports.transformValueFromStorage = function( value ) {
+  value = JSON.parse( JSON.stringify( value ) )
+
   var data = value.__ds
   delete value.__ds
-  data._d = value
+
+  if( value.__dsList instanceof Array ) {
+    data._d = value.__dsList
+  } else {
+    data._d = value
+  }
+
   return data
 }
