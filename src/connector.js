@@ -70,7 +70,7 @@ class Connector extends events.EventEmitter {
   }
 
   /**
-  * Writes a value to the cache.
+  * Writes a value to the connector.
   *
   * @param {String}   key
   * @param {Object}   value
@@ -84,7 +84,7 @@ class Connector extends events.EventEmitter {
   }
 
   /**
-  * Retrieves a value from the cache
+  * Retrieves a value from the connector.
   *
   * @param {String}   key
   * @param {Function} callback Will be called with null and the stored object
@@ -97,7 +97,7 @@ class Connector extends events.EventEmitter {
   }
 
   /**
-  * Deletes an entry from the cache.
+  * Deletes an entry from the connector.
   *
   * @param   {String}   key
   * @param   {Function} callback Will be called with null for successful deletions or with
@@ -106,6 +106,21 @@ class Connector extends events.EventEmitter {
   * @returns {void}
   */
   delete( key, callback ) {
+
+  }
+
+  /**
+   * Gracefully close the connector and any dependencies.
+   *
+   * Called when deepstream.close() is invoked.
+   * If this method is defined, it must emit 'close' event to notify deepstream of clean closure.
+   *
+   * (optional)
+   *
+   * @public
+   * @returns {void}
+   */
+  close() {
 
   }
 }
