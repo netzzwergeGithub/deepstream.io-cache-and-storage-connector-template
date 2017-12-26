@@ -1,5 +1,3 @@
 plugins:
   storage:
     name: <name>
-    options:
-      <KEY>: "${ENVIRONMENT_VARIABLE}"
