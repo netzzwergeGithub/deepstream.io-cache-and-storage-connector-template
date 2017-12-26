@@ -5,6 +5,4 @@ A template that can be forked to create new cache and storage connectors
 plugins:
   <storage|cache>:
     name: <name>
-    options:
-      <KEY>: "${ENVIRONMENT_VARIABLE}"
 ```
