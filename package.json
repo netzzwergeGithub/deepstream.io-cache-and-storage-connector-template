@@ -1,7 +1,7 @@
 {
-  "name": "deepstream.io-cache-and-storage-connector-template",
-  "version": "1.0.1",
-  "description": "A template that can be forked to create new cache and storage connectors for deepstream.io",
+  "name": "deepstream.io-storage-connector-file-mock",
+  "version": "0.0.1",
+  "description": "A Mock thats loads data from a file at start. Write operations are are not persistet. All changes are loast on restart. Just for testing purposes",
   "main": "src/connector.js",
   "scripts": {
     "test": "mocha",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/deepstreamIO/deepstream.io-cache-and-storage-connector-template.git"
+    "url": "https://github.com/netzzwergeGithub/deepstream.io-storage-connector-file-mock.git"
   },
-  "author": "deepstreamHub GmbH",
+  "author": "Masle K",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/deepstreamIO/deepstream.io-cache-and-storage-connector-template/issues"
+    "url": "https://github.com/netzzwergeGithub/deepstream.io-storage-connector-file-mock/issues"
   },
-  "homepage": "http://deepstream.io",
+  "homepage": "http://www.netzzwerge.de",
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
