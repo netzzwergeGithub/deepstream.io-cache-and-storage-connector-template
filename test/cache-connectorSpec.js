@@ -4,15 +4,46 @@
 const expect = require('chai').expect
 const CacheConnector = require('../src/connector')
 const EventEmitter = require('events').EventEmitter
-const settings = { port: 6379, host: 'localhost' }
-const MESSAGE_TIME = 20
+const settings = {}
+const settings_2 = { dataFile: null}
+const settings_3 = { dataFile: "notExist.json"}
+const settings_4 = { dataFile: "todo_data.json"}
+const MESSAGE_TIME = 20;
+var EXPECTED_TIMEOUT = 20000;
 
 describe( 'the message connector has the correct structure', () => {
   var cacheConnector
 
-  it( 'throws an error if required connection parameters are missing', () => {
-    expect( () => { new CacheConnector( 'gibberish' ) } ).to.throw()
+  it( 'throws not an error optinal parameters are missing', () => {
+    expect( () => { new CacheConnector( ) } ).not.to.throw()
   })
+
+  it( 'no  error on null for dataFile parameters', () => {
+    expect( () => { new CacheConnector( settings_2) } ).not.to.throw()
+  })
+  it( 'emit  error on not existent datafile', (done) => {
+    var caco = new CacheConnector( settings_3);
+    caco.on( 'error', function function_name() {
+      done();
+    });
+    
+  })
+
+  it( 'no  error on existing file for dataFile parameters', (done) => {
+    expect( () => { new CacheConnector( settings_4) } ).not.to.throw()
+    var caco1 = new CacheConnector( settings_4);
+     caco1.on( 'ready', function() {
+      caco1.get( 'todo/jbo5q7z2-1y7eze4vz6e', ( error, value ) => {
+      expect( error ).to.equal( null )
+      expect( value ).to.deep.equal( { _d: {title: "Number V", isDone: false},  _v: 1  } )
+      done()
+      });
+      
+      }.bind(this));
+    
+
+  
+  });
 
   it( 'creates the cacheConnector', ( done ) => {
     cacheConnector = new CacheConnector( settings )
@@ -43,6 +74,12 @@ describe( 'the message connector has the correct structure', () => {
       done()
     })
   })
+
+  it( 'calling close', ( done ) => {
+    cacheConnector.close( );
+    
+    cacheConnector.on( 'close', done );
+  }).timeout(5000);
 
   it( 'retrieves an existing value', ( done ) => {
     cacheConnector.get( 'someValue', ( error, value ) => {

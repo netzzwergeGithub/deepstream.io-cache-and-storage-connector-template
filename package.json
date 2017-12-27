@@ -1,5 +1,5 @@
 {
-  "name": "deepstream.io-storage-connector-file-mock",
+  "name": "storage-connector-file-mock",
   "version": "0.0.1",
   "description": "A Mock thats loads data from a file at start. Write operations are are not persistet. All changes are loast on restart. Just for testing purposes",
   "main": "src/connector.js",
@@ -13,13 +13,15 @@
     "type": "git",
     "url": "https://github.com/netzzwergeGithub/deepstream.io-storage-connector-file-mock.git"
   },
-  "author": "Masle K",
+  "author": "deepstreamio GmbH, Masle K",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/netzzwergeGithub/deepstream.io-storage-connector-file-mock/issues"
   },
   "homepage": "http://www.netzzwerge.de",
-  "dependencies": {},
+  "dependencies": {
+    "jsonfile": "^4.0.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
