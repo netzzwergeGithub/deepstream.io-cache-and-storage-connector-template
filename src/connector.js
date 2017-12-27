@@ -4,7 +4,9 @@ const events = require('events')
 const util = require('util')
 const pckg = require('../package.json')
 const jsonfile = require('jsonfile')
-const transformData = require('./transform-data')
+const transformData = require('./transform-data');
+const path = require('path');
+
 /**
  * Forked from a template storage connectors
  * for [deepstream](http://deepstream.io)
@@ -21,7 +23,7 @@ class Connector extends events.EventEmitter {
   constructor(options) {
     super();
     const defaultFileName = 'default_data.json';
-    const dataFolder = './data/';
+    const dataFolder = path.join(__dirname, '/../data/');
     this.saveData = process.env.FILE_MOCK_SAVE_DATA_ON_CLOSE && process.env.FILE_MOCK_SAVE_DATA_ON_CLOSE.match(/^true$/i) != null || false;
     this.isReady = false;
     this.name = pckg.name;
